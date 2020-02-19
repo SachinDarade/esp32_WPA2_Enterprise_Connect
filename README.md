@@ -1,42 +1,13 @@
 # WPA2 Enterprise Example
 
-This example shows how ESP32 connects to AP with wpa2 enterprise encryption. Example does the following steps:
+This example shows how ESP32 connects to AP with wpa2 enterprise encryption to University of Auckloand (UoA) Wifi which uses the CA certificate for verification. Follow the following steps:
 
-1. Install CA certificate which is optional.
-2. Install client certificate and client key which is required in TLS method and optional in PEAP and TTLS methods.
-3. Set identity of phase 1 which is optional.
-4. Set user name and password of phase 2 which is required in PEAP and TTLS methods.
-5. Enable wpa2 enterprise.
-6. Connect to AP.
+1. Replace the file wpa2_ca.pem with your own Certificate from QuVadis_Root_CA_2_G3.crt or any other certificate of similar format which you have.
+2. Use your UPI/Username in both the fields of EAP_ID, EAP_USERNAME. Enter your password. This can also be done through the Configuration Menu. 
+3. Use method as PEAP in the configuration menu.
+4. Connect to AP using the steps from: https://docs.espressif.com/projects/esp-idf/en/latest/get-started/index.html#step-4-set-up-the-environment-variables
 
-*Note:* 1. certificate currently is generated when compiling the example and then stored in flash.
-        2. The expiration date of the certificates is 2027/06/05.
 
-## The file wpa2_ca.pem, wpa2_ca.key, wpa2_server.pem, wpa2_server.crt and wpa2_server.key can be used to configure AP with
-   wpa2 enterprise encryption. The steps how to generate new certificates and keys using openssl is as follows:
-   
-1. wpa2_ca.pem wpa2_ca.key:
-    openssl req -new -x509 -keyout wpa2_ca.key -out wpa2_ca.pem
-2. wpa2_server.key:
-    openssl req -new -key wpa2_server.key -out wpa2_server.csr
-3. wpa2_csr:
-    openssl req -new -key server.key -out server.csr
-4. wpa2_server.crt:
-    openssl ca -batch -keyfile wpa2_ca.key -cert wpa2_ca.pem -in wpa2_server.csr -key ca1234 -out wpa2_server.crt -extensions xpserver_ext -extfile xpextensions
-5. wpa2_server.p12:
-    openssl pkcs12 -export -in wpa2_server.crt -inkey wpa2_server.key -out wpa2_server.p12 -passin pass:sv1234 -passout pass:sv1234
-6. wpa2_server.pem:
-    openssl pkcs12 -in wpa2_server.p12 -out wpa2_server.pem -passin pass:sv1234 -passout pass:sv1234
-7. wpa2_client.key:
-    openssl genrsa -out wpa2_client.key 1024
-8. wpa2_client.csr:
-    openssl req -new -key wpa2_client.key -out wpa2_client.csr
-9. wpa2_client.crt:
-    openssl ca -batch -keyfile wpa2_ca.key -cert wpa2_ca.pem -in wpa2_client.csr -key ca1234 -out wpa2_client.crt -extensions xpclient_ext -extfile xpextensions
-10. wpa2_client.p12:
-    openssl pkcs12 -export -in wpa2_client.crt -inkey wpa2_client.key -out wpa2_client.p12
-11. wpa2_client.pem:
-    openssl pkcs12 -in wpa2_client.p12 -out wpa2_client.pem
 
 ### Example output
 

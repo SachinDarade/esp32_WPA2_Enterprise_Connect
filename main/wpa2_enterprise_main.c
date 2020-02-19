@@ -38,12 +38,12 @@
    You can choose EAP method via project configuration according to the
    configuration of AP.
 */
-#define EXAMPLE_WIFI_SSID "UoA-WiFi"
-#define EXAMPLE_EAP_METHOD CONFIG_EXAMPLE_EAP_METHOD
+#define EXAMPLE_WIFI_SSID "UoA-WiFi" //SSID of WiFi
+#define EXAMPLE_EAP_METHOD CONFIG_EXAMPLE_EAP_METHOD  //This can be set in Configuration Menu
 
-#define EXAMPLE_EAP_ID "sdar949"
-#define EXAMPLE_EAP_USERNAME "sdar949"
-#define EXAMPLE_EAP_PASSWORD "sachinD@11"
+#define EXAMPLE_EAP_ID "Your_UPI/UserID"
+#define EXAMPLE_EAP_USERNAME "Your_UPI/UserID"
+#define EXAMPLE_EAP_PASSWORD "YourPasswordHere"
 
 /* FreeRTOS event group to signal when we are connected & ready to make a request */
 static EventGroupHandle_t wifi_event_group;
